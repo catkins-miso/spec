@@ -1,9 +1,10 @@
 {
-  "namespace":"io.cloudevents",
+  "namespace":"io.cloudevents.extensions",
   "type":"record",
-  "name":"CloudEvent",
-  "version":"1.0",
-  "doc":"Avro Event Format for CloudEvents",
+  "name":"CausalCloudEvent",
+  "aliases":["CloudEvent"],
+  "version":"0.1-wip",
+  "doc":"Avro Event Format for Causal CloudEvents add causality field and makes default null default for data field.",
   "fields":[
     {
       "name":"attribute",
@@ -21,8 +22,8 @@
     {
       "name": "data",
       "type": [
-        "bytes",
         "null",
+        "bytes",
         "boolean",
         {
           "type": "map",
@@ -57,7 +58,13 @@
         { "type": "array", "items": "CloudEventData" },
         "double",
         "string"
-      ]
+      ],
+      "default": "null"
+    },
+    {
+        "name":"causality",
+        "type":"array",
+        "items":"CausalCloudEvent"
     }
   ]
 }
